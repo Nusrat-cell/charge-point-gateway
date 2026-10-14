@@ -13,8 +13,8 @@ import java.util.function.Supplier;
  * without any translation layer.
  *
  * In a production Spring Boot service this would be Micrometer talking
- * to micrometer-registry-prometheus. This hand-written version exists
- * because I can't pull that dependency in this environment, but the
+ * to micrometer-registry-prometheus. This hand-written version keeps the
+ * project dependency-free, but the
  * wire format it produces is the real Prometheus format, not a
  * simplified stand-in.
  */

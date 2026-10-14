@@ -20,8 +20,8 @@ import java.util.regex.Pattern;
 
 /**
  * A plain HTTP server built on the JDK's built-in com.sun.net.httpserver
- * (no web framework dependency, since this environment can't pull
- * Spring from Maven Central). Routes:
+ * (no web framework dependency, in keeping with the project's
+ * zero-dependency rule). Routes:
  *
  *   POST /api/v1/chargepoints/{id}/events  - ingest an event
  *   GET  /api/v1/chargepoints/{id}         - read current state

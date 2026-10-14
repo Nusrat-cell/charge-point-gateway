@@ -15,14 +15,12 @@ import com.nusrat.chargepoint.web.ChargePointHttpServer;
  * in-process event bus, keeps per-charge-point state, and exposes
  * Prometheus-compatible metrics for observability.
  *
- * This is a personal learning project, built to get hands-on with the
- * concepts behind an EV-charging backend stack (event-driven
- * processing, ordered-per-key message handling, operational metrics)
- * using only the JDK, because this build environment has no network
- * access to Maven Central / the Gradle plugin portal to pull in Spring
- * Boot or a real Kafka client. It is not a claim of production
- * experience with those exact tools - see README.md for exactly what
- * is simulated and what the real next step would be.
+ * A personal project, built to get hands-on with the concepts behind an
+ * EV-charging backend (event-driven processing, ordered-per-key message
+ * handling, operational metrics). It deliberately uses only the JDK - no
+ * Spring, no Kafka client - so it builds anywhere with a single javac
+ * call and every moving part is visible. See README.md for what is
+ * simulated and what the production version would use instead.
  */
 public final class Application {
 

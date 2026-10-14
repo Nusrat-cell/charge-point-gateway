@@ -17,8 +17,7 @@ import java.util.function.Consumer;
  * This is NOT Kafka. There is no persistence, no replication, no
  * consumer groups across processes, and no durability if the JVM dies.
  * It exists so the ingest -> process -> metrics pipeline in this demo is
- * genuinely asynchronous and testable without a broker, in an
- * environment where I can't pull in a real Kafka client dependency.
+ * genuinely asynchronous and testable without running a broker.
  * Swapping this class for Spring Kafka's KafkaTemplate/@KafkaListener
  * is the next real step, not something this project pretends to have
  * already done.

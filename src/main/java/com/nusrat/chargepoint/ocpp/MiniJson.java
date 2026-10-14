@@ -14,8 +14,8 @@ import java.util.Map;
  * values: Map, List, String, Double/Long, Boolean or null.
  *
  * Written by hand because this project deliberately has zero external
- * dependencies (the build environment can't reach Maven Central). In a real
- * service this would be Jackson or kotlinx.serialization.
+ * dependencies. In a production service this would be Jackson or
+ * kotlinx.serialization.
  */
 public final class MiniJson {
 

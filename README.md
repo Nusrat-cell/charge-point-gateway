@@ -30,8 +30,8 @@ about it. **I'm being upfront about what this is and isn't:**
 - It's written in Java, not Kotlin. I know Java; Kotlin is next on my
   list specifically because of roles like this one.
 
-I'd rather show working code with an honest README than claim
-experience with tools I used for the first time yesterday. The real
+I'd rather show working code with an honest README than overclaim
+experience with tools I haven't used in production yet. The real
 next step — swapping `InMemoryEventBus` for Spring Kafka, and this
 HTTP server for Spring Boot — is exactly the kind of thing I want to
 learn on the job.
