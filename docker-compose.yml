@@ -1,0 +1,26 @@
+# Runs Prometheus + Grafana against the gateway, which you start
+# separately with ./build.sh && java -cp out com.nusrat.chargepoint.Application
+# (the app itself isn't containerized here since it has no external
+# dependencies to isolate - just the JDK).
+version: "3.8"
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: cpg-prometheus
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    container_name: cpg-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    depends_on:
+      - prometheus
