@@ -2,7 +2,7 @@
 
 A small backend service that speaks **real OCPP 1.6-J** (the protocol EV
 chargers use to talk to their backend), processes charge point events processes them asynchronously, keeps per-charge-point
-state, and exposes Prometheus-compatible metrics — the shape of problem
+state, and exposes Prometheus-compatible metrics. It is the shape of problem
 behind an EV-charging backend: devices reporting status and meter
 readings, a service that needs to process those events reliably and in
 order, and an on-call engineer who needs to see what's happening.
@@ -10,20 +10,20 @@ order, and an on-call engineer who needs to see what's happening.
 ## Why I built this
 
 I built this to get hands-on with the real shape of a backend problem
-in the EV charging space — event ingestion, ordered asynchronous
-processing, and operational observability — rather than just reading
+in the EV charging space (event ingestion, ordered asynchronous
+processing, and operational observability) rather than just reading
 about it. **I'm being upfront about what this is and isn't:**
 
 - It does **not** use a real Kafka broker. `InMemoryEventBus` is a
   hand-written in-process queue that copies the one Kafka property this
-  demo actually needed — events for the same charge point are always
+  demo actually needed: events for the same charge point are always
   processed in the order they arrived, because they're routed to the
   same worker by a hash of the charge point ID, the same idea as
   Kafka's "same key → same partition → ordered" guarantee.
 - The JSON parser is hand-written too (`MiniJson`), for the same reason.
 - It does **not** use Spring Boot or a real metrics library. The HTTP
   server is the JDK's built-in `com.sun.net.httpserver`, and the
-  `/metrics` endpoint is hand-written — but it emits genuine
+  `/metrics` endpoint is hand-written, but it emits genuine
   [Prometheus exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/),
   so a real Prometheus instance can scrape it with no translation
   layer (see `docker-compose.yml`).
@@ -32,8 +32,8 @@ about it. **I'm being upfront about what this is and isn't:**
 
 I'd rather show working code with an honest README than overclaim
 experience with tools I haven't used in production yet. The real
-next step — swapping `InMemoryEventBus` for Spring Kafka, and this
-HTTP server for Spring Boot — is exactly the kind of thing I want to
+next step, swapping `InMemoryEventBus` for Spring Kafka and this
+HTTP server for Spring Boot, is exactly the kind of thing I want to
 learn on the job.
 
 ## OCPP 1.6-J support
@@ -126,7 +126,7 @@ Point Grafana at the Prometheus data source and graph
 ## What I'd build next
 
 - Swap `InMemoryEventBus` for real Kafka (Spring Kafka or the plain
-  Java client) — the interface is already shaped around publish/
+  Java client). The interface is already shaped around publish/
   subscribe-by-key so the swap wouldn't touch the rest of the code.
 - Swap the hand-written HTTP layer for Spring Boot + Spring Web.
 - Persist state to Postgres instead of an in-memory map.
@@ -136,6 +136,6 @@ Point Grafana at the Prometheus data source and graph
 
 I'm a final-year Computer Science student (Niels Brock / De Montfort
 University, Copenhagen) interested in backend engineering at the
-intersection of business and technology. My other projects —
-analytics and consulting-focused — are at
+intersection of business and technology. My other projects,
+analytics and consulting-focused, are at
 [github.com/Nusrat-cell](https://github.com/Nusrat-cell).
